@@ -231,7 +231,7 @@ export function Content({}) {
               htmlFor="mastodonHandle"
               className="form-label inline-block mb-2 text-gray-700 dark:text-gray-200"
             >
-              Your Mastodon handle:
+              The fediverse handle:
             </label>
             <input
               type="text"
@@ -470,9 +470,11 @@ function Results({
   ).current
 
   follows = follows.filter((acc) => matchesSearch(acc, search)).slice(0, 500)
-
+  const accounts = follows.map(account => account.acct)
+  const accountsString = accounts.join('\n');
   return (
     <div className="flex-col lg:flex items-center justify-center">
+      <textarea className="w-full" rows={10} value={accountsString} readOnly />
       <div className="max-w-4xl">
         <div className="w-full mb-4 dark:text-gray-200">
           <label>
